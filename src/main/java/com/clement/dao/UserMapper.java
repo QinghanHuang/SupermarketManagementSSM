@@ -33,6 +33,6 @@ public interface UserMapper {
     @Update("update smbms_user set userName = #{userName} ,gender = #{gender},birthday = #{birthday},phone=#{phone},address=#{address},userRole = #{userRole},modifyBy=#{modifyBy},modifyDate=#{modifyDate}  where id = #{id};")
     int updateUser(User user);
 
-    @Delete("delete from smbms_user where id=#{id}")
+    @Delete("delete from smbms-user where id=#{id}")
     int deleteById(@Param("id") long id);
 }

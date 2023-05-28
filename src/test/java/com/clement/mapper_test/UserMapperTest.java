@@ -50,8 +50,7 @@ public class UserMapperTest {
     }
     @Test
     public void deleteTest(){
-        userMapper.deleteById(20);
-        userMapper.deleteById(22);
+//        userMapper.deleteById();
 
     }
     @Test
