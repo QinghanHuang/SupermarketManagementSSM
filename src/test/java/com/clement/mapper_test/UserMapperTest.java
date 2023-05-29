@@ -18,16 +18,13 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
  * @Version 1.0
  */
 
-@Transactional
+@Transactional(rollbackFor = Exception.class)
 @Rollback(value = false)
 @ContextConfiguration(locations="file:src/main/resources/applicationContext.xml")
 @RunWith(SpringJUnit4ClassRunner.class)
 public class UserMapperTest {
     @Autowired
     UserMapper userMapper;
-
-    @Autowired
-    UserService userServiceImpl;
 
     @Test
     public void selectTest(){
@@ -38,7 +35,7 @@ public class UserMapperTest {
 
     @Test
     public void updateTest(){
-//        userMapper.updatePasswordById();
+        userMapper.updatePasswordById(23,"123");
 
     }
     @Test
@@ -50,12 +47,15 @@ public class UserMapperTest {
     }
     @Test
     public void deleteTest(){
-//        userMapper.deleteById();
+        userMapper.deleteById(23);
 
     }
+
     @Test
-    public void test(){
-        userServiceImpl.insertUser(new User());
+    public void test1(){
+//        userMapper.findUserByRoleIdAndUsernameAndPageLimit(2,"李明",0,20);
+        userMapper.findUserCountByRoleIdAndUsername(2,"");
+
 
     }
 

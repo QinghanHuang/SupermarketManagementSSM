@@ -16,10 +16,15 @@ public interface UserMapper {
     @Select("select * from smbms_user")
     List<User> findAll();
 
-
+    @Select("SELECT COUNT(1) FROM smbms_user u, smbms_role r WHERE u.userRole = r.id\n" +
+            "AND r.id = #{id}\n" +
+            "AND u.userName LIKE CONCAT('%', #{username}, '%')\n")
     int findUserCountByRoleIdAndUsername(@Param("id") long id,@Param("username") String username);
 
-
+    @Select("SELECT * FROM smbms_user u, smbms_role r WHERE u.userRole = r.id\n" +
+            "AND r.id = #{id}\n" +
+            "AND u.userName LIKE CONCAT('%', #{username}, '%')\n" +
+            "LIMIT #{startIndex}, #{pageSize};")
     List<User> findUserByRoleIdAndUsernameAndPageLimit(@Param("id") long id, @Param("username") String username, @Param("startIndex") int startIndex, @Param("pageSize") int pageSize);
 
     @Insert("insert into smbms_user(id,userCode,userName,userPassword,gender,birthday,phone,address,userRole,createdBy,creationDate) values(null ,#{userCode},#{userName},#{userPassword},#{gender},#{birthday},#{phone},#{address},#{userRole},#{createdBy},#{creationDate}); ")

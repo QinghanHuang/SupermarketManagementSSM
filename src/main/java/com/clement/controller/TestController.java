@@ -10,10 +10,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * @Version 1.0
  */
 @Controller
-public class MainController {
+public class TestController {
 
-    @RequestMapping("/")
+    @RequestMapping("/test")
     public String index(){
-        return "index";
+        return "test";
     }
 }
